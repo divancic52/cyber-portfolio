@@ -293,13 +293,11 @@ function provjeriHashMatch() {
     }
 }
 // --- LAB 6: SECURITY REPORT GENERATOR ---
-function generirajIzvjesce(event) {
-    event.preventDefault();
-
-    const analiticar = document.getElementById("repAnalyst").value;
-    const meta = document.getElementById("repTarget").value;
+function preuzmiTxtIzvjesce() {
+    const analiticar = document.getElementById("repAnalyst").value || "Nije navedeno";
+    const meta = document.getElementById("repTarget").value || "Nije navedeno";
     const kriticnost = document.getElementById("repSeverity").value;
-    const opis = document.getElementById("repSummary").value;
+    const opis = document.getElementById("repSummary").value || "Bez unesenog opisa.";
     const datum = new Date().toLocaleString("hr-HR");
 
     const sadrzajTxt = 
@@ -325,12 +323,13 @@ te provjeriti integritet podataka.
 Generirano putem: Cyber Security Portfolio Lab 6
 ==================================================`;
 
-    // Izrada Blob objekta i pokretanje preuzimanja TXT datoteke
     const blob = new Blob([sadrzajTxt], { type: "text/plain;charset=utf-8" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = `Security_Report_${Date.now()}.txt`;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
 }
 
@@ -338,11 +337,15 @@ function preuzmiPrintPDF() {
     const analiticar = document.getElementById("repAnalyst").value || "Nije navedeno";
     const meta = document.getElementById("repTarget").value || "Nije navedeno";
     const kriticnost = document.getElementById("repSeverity").value;
-    const opis = document.getElementById("repSummary").value || "Bez opisa";
+    const opis = document.getElementById("repSummary").value || "Bez unesenog opisa.";
     const datum = new Date().toLocaleString("hr-HR");
 
-    // Otvaranje novog prozora usklađenog za ispis ili spremanje u PDF
     const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+        alert("Molimo dopustite skočne prozore (pop-up) u pregledniku kako bi se otvorio PDF!");
+        return;
+    }
+
     printWindow.document.write(`
         <!DOCTYPE html>
         <html>

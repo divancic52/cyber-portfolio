@@ -292,3 +292,88 @@ function provjeriHashMatch() {
         matchStatus.style.color = "#ff5555";
     }
 }
+// --- LAB 6: SECURITY REPORT GENERATOR ---
+function generirajIzvjesce(event) {
+    event.preventDefault();
+
+    const analiticar = document.getElementById("repAnalyst").value;
+    const meta = document.getElementById("repTarget").value;
+    const kriticnost = document.getElementById("repSeverity").value;
+    const opis = document.getElementById("repSummary").value;
+    const datum = new Date().toLocaleString("hr-HR");
+
+    const sadrzajTxt = 
+`==================================================
+        SIGURNOSNO IZVJEŠĆE / SECURITY REPORT
+==================================================
+Datum i vrijeme: ${datum}
+Analitičar:       ${analiticar}
+Ciljani sustav:   ${meta}
+Kritičnost:      ${kriticnost}
+==================================================
+
+SAŽETAK I NALAZI ANALIZE:
+--------------------------------------------------
+${opis}
+
+--------------------------------------------------
+Preporuka: Provesti hitnu sanitizaciju unosa, 
+primijeniti preporučena HTTP sigurnosna zaglavlja 
+te provjeriti integritet podataka.
+
+==================================================
+Generirano putem: Cyber Security Portfolio Lab 6
+==================================================`;
+
+    // Izrada Blob objekta i pokretanje preuzimanja TXT datoteke
+    const blob = new Blob([sadrzajTxt], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `Security_Report_${Date.now()}.txt`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+function preuzmiPrintPDF() {
+    const analiticar = document.getElementById("repAnalyst").value || "Nije navedeno";
+    const meta = document.getElementById("repTarget").value || "Nije navedeno";
+    const kriticnost = document.getElementById("repSeverity").value;
+    const opis = document.getElementById("repSummary").value || "Bez opisa";
+    const datum = new Date().toLocaleString("hr-HR");
+
+    // Otvaranje novog prozora usklađenog za ispis ili spremanje u PDF
+    const printWindow = window.open("", "_blank");
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Security Report - ${meta}</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 40px; color: #111; line-height: 1.6; }
+                h1 { color: #0366d6; border-bottom: 2px solid #0366d6; padding-bottom: 10px; }
+                .meta-box { background: #f6f8fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #e1e4e8; }
+                .meta-item { margin-bottom: 8px; }
+                .badge { font-weight: bold; padding: 4px 8px; border-radius: 4px; color: #fff; background: #d73a49; }
+                .content { background: #fff; padding: 15px; border: 1px solid #e1e4e8; border-radius: 6px; white-space: pre-wrap; }
+                .footer { margin-top: 40px; font-size: 0.85em; color: #586069; border-top: 1px solid #e1e4e8; padding-top: 10px; }
+            </style>
+        </head>
+        <body>
+            <h1>🛡️ Security Incident Report</h1>
+            <div class="meta-box">
+                <div class="meta-item"><strong>Datum i vrijeme:</strong> ${datum}</div>
+                <div class="meta-item"><strong>Analitičar:</strong> ${analiticar}</div>
+                <div class="meta-item"><strong>Ciljani sustav:</strong> ${meta}</div>
+                <div class="meta-item"><strong>Kritičnost:</strong> <span class="badge">${kriticnost}</span></div>
+            </div>
+            <h2>Nalazi i Opis</h2>
+            <div class="content">${opis}</div>
+            <div class="footer">Generirano putem Cyber Security Portfolio Testing Laba.</div>
+            <script>
+                window.onload = function() { window.print(); }
+            </script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+}

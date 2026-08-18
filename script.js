@@ -1,9 +1,52 @@
+// --- LOGIKA ZA TABOVE (MORA BITI PRVA) ---
+function otvoriTab(tabId, event) {
+    // 1. Sakrij sve tab sadržaje
+    const allContents = document.querySelectorAll('.tab-content');
+    allContents.forEach(content => {
+        content.style.display = 'none';
+        content.classList.remove('active');
+    });
+
+    // 2. Deaktiviraj sve gumbe
+    const allButtons = document.querySelectorAll('.tab-btn');
+    allButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // 3. Ako je odabran "Prikaži sve"
+    if (tabId === 'all') {
+        allContents.forEach(content => {
+            content.style.display = 'block';
+        });
+    } else {
+        // Prikaži samo traženi tab
+        const targetContent = document.getElementById('tab-' + tabId);
+        if (targetContent) {
+            targetContent.style.display = 'block';
+            targetContent.classList.add('active');
+        }
+    }
+
+    // 4. Označi kliknuti gumb kao aktivni
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+}
+
+// Inicijalno pokretanje kada se stranica učita
+window.addEventListener('DOMContentLoaded', () => {
+    // Sakrij sve na početku pa otvori 'about'
+    otvoriTab('about', null);
+});
+
+
 // --- LAB 1: XSS FUNKCIJA ---
 function testirajUnos() {
     let unos = document.getElementById("userInput").value;
     document.getElementById("vulnerableOutput").innerHTML = unos;
     document.getElementById("safeOutput").textContent = unos;
 }
+
 
 // --- LAB 2: HTTP HEADERS BAZA & FUNKCIJA ---
 const headersInfo = {
@@ -49,6 +92,7 @@ function analizirajHeader() {
         rezultatBox.style.display = "none";
     }
 }
+
 
 // --- LAB 3: POST FETCH REQ SIMULATOR ---
 async function posaljiIncident(event) {
@@ -100,6 +144,7 @@ async function posaljiIncident(event) {
     }
 }
 
+
 // --- LAB 4: PASSWORD STRENGTH & ENTROPY ANALYZER ---
 function prikaziLozinku() {
     const input = document.getElementById("passInput");
@@ -120,7 +165,6 @@ function analizirajLozinku() {
     let poolSize = 0;
     let suggestions = [];
 
-    // Određivanje veličine skupa znakova (Pool Size)
     if (/[a-z]/.test(pass)) poolSize += 26; else suggestions.push("Dodajte mala slova (a-z)");
     if (/[A-Z]/.test(pass)) poolSize += 26; else suggestions.push("Dodajte velika slova (A-Z)");
     if (/[0-9]/.test(pass)) poolSize += 10; else suggestions.push("Dodajte brojeve (0-9)");
@@ -130,19 +174,16 @@ function analizirajLozinku() {
         suggestions.push("Preporučena duljina je minimalno 12 znakova.");
     }
 
-    // Izračun entropije: E = L * log2(R)
     const entropy = poolSize > 0 ? pass.length * Math.log2(poolSize) : 0;
     const roundedEntropy = Math.round(entropy);
 
     document.getElementById("entropyBits").textContent = roundedEntropy;
     document.getElementById("poolSize").textContent = poolSize;
 
-    // Procjena vremena probijanja (pretpostavka: 10 milijardi pokušaja u sekundi)
     const combinations = Math.pow(poolSize, pass.length);
     const seconds = combinations / 10000000000;
     document.getElementById("crackTime").textContent = formatirajVrijeme(seconds);
 
-    // Vizualni indikator i kategorizacija
     const meter = document.getElementById("strengthMeter");
     const label = document.getElementById("strengthLabel");
 
@@ -173,7 +214,6 @@ function analizirajLozinku() {
         label.style.color = "#00ff66";
     }
 
-    // Prikaz preporuka
     const sugList = document.getElementById("passSuggestions");
     sugList.innerHTML = "";
     if (suggestions.length === 0) {
@@ -202,34 +242,3 @@ function formatirajVrijeme(sekunde) {
     if (godine < 1000000000) return `${(godine / 1000000).toFixed(1)} milijuna godina`;
     return "Više od milijardu godina";
 }
-// --- LOGIKA ZA TABOVE ---
-function otvoriTab(tabId, event) {
-    const allContents = document.querySelectorAll('.tab-content');
-    const allButtons = document.querySelectorAll('.tab-btn');
-
-    if (tabId === 'all') {
-        // Prikaži sve tabove
-        allContents.forEach(content => content.classList.add('active'));
-    } else {
-        // Sakrij sve tabove pa prikaži samo odabrani
-        allContents.forEach(content => content.classList.remove('active'));
-        const targetContent = document.getElementById(`tab-${tabId}`);
-        if (targetContent) {
-            targetContent.classList.add('active');
-        }
-    }
-
-    // Ažuriraj aktivni gumb
-    allButtons.forEach(btn => btn.classList.remove('active'));
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.add('active');
-    }
-}
-// --- AUTOMATSKO POKRETANJE PRVOG TABA PRI UČITAVANJU STRANICE ---
-document.addEventListener("DOMContentLoaded", function() {
-    // Ako niti jedan tab nije eksplicitno prikazan, aktiviraj 'about' tab
-    const activeTab = document.querySelector('.tab-content.active');
-    if (!activeTab) {
-        otvoriTab('about');
-    }
-});

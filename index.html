@@ -3,160 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security Portfolio</title>
+    <title>Cyber Security Portfolio & Labovi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Zaglavlje stranice -->
     <header>
         <h1>Cyber Security Portfolio</h1>
-        <p class="subtitle">Dobrodošli u moj profil | Učenje IT-a & Sigurnosti s razumijevanjem</p>
+        <p>Interaktivni demo labovi, analize i primjeri iz mrežne i aplikacijske sigurnosti</p>
     </header>
 
-    <!-- Sekcija O Meni -->
-    <section class="card">
-        <h2>O Meni</h2>
-        <p>Aktivno razvijam vještine u području IT-a i kibernetičke sigurnosti. Fokusiran/a sam na razumijevanje načina na koji web aplikacije i mreže funkcioniraju kako bih uočio/la potencijalne ranjivosti i primijenio/la obrambene mjere.</p>
-    </section>
+    <!-- Navigacijski tabovi -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="otvoriTab('about', event)">O meni</button>
+        <button class="tab-btn" onclick="otvoriTab('lab1', event)">Lab 1: XSS</button>
+        <button class="tab-btn" onclick="otvoriTab('lab2', event)">Lab 2: Headers</button>
+        <button class="tab-btn" onclick="otvoriTab('lab3', event)">Lab 3: Incident POST</button>
+        <button class="tab-btn" onclick="otvoriTab('lab4', event)">Lab 4: Password Entropy</button>
+        <button class="tab-btn tab-all" onclick="otvoriTab('all', event)">Prikaži sve</button>
+    </nav>
 
-    <!-- Sekcija s projektima i labovima -->
-    <section class="card">
-        <h2>Moji Projekti & Sigurnosni Labovi</h2>
-        <div class="project-item">
-            <h3>1. Osoban Siguran Portfolio (GitHub Pages)</h3>
-            <p>Izrada i objava statičke web stranice uz primjenu HTTPS-a, čiste HTML/CSS strukture i praćenje verzija koda pomoću Git-a.</p>
-        </div>
-        <div class="project-item">
-            <h3>2. Uskoro: Analiza mrežnog prometa & XSS Lab</h3>
-            <p>Uskoro dodajem praktične primjere rada u Wiresharku i simulaciju osnova web sigurnosti.</p>
-        </div>
-    </section>
-
-    <!-- Sekcija Kontakt -->
-    <section class="card">
-        <h2>Kontakt & Poveznice</h2>
-        <p>Možete me pronaći i pratiti moj napredak na sljedećim platformama:</p>
-        <ul>
-            <li><strong>GitHub:</strong> Moj profil na GitHubu</li>
-            <li><strong>LinkedIn:</strong> Uskoro</li>
-        </ul>
-        <!-- Sekcija: Cyber Security Lab (XSS Demonstracija) -->
-    <section class="card">
-        <h2>Cyber Security Lab: XSS Ranjivost & Zaštita</h2>
-        <p>Unesite tekst ispod kako biste vidjeli razliku između ranjivog (innerHTML) i sigurnog (textContent) prikaza u JavaScriptu:</p>
+    <main class="container">
         
-        <input type="text" id="userInput" placeholder="Upišite nešto ili probajte XSS npr: <img src=x onerror=alert('XSS!')>" style="width: 80%; padding: 8px; margin-bottom: 10px;">
-        <br>
-        <button onclick="testirajUnos()" style="background-color: #00ff66; color: #0d1117; font-weight: bold; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Testiraj Unos</button>
-
-        <div class="project-item" style="margin-top: 15px;">
-            <strong style="color: #ff5555;">🔴 Ranjivi prikaz (innerHTML):</strong>
-            <div id="vulnerableOutput" style="color: #ffffff; padding-top: 5px;"></div>
+        <!-- Tab: O meni / Pregled -->
+        <div id="tab-about" class="tab-content active">
+            <section class="card">
+                <h2>O Portfoliju</h2>
+                <p>Dobrodošli na moj interaktivni Cyber Security portfolio. Ovdje možete isprobati razne alate i simulacije usmjerene na web sigurnost, analizu zaglavlja i kriptografske koncepte.</p>
+                <p>Odaberite jedan od labova u gornjem izborniku za testiranje i demonstraciju koda u realnom vremenu.</p>
+            </section>
         </div>
 
-        <div class="project-item" style="margin-top: 15px; border-left-color: #58a6ff;">
-            <strong style="color: #58a6ff;">🟢 Siguran prikaz (textContent):</strong>
-            <div id="safeOutput" style="color: #ffffff; padding-top: 5px;"></div>
-        </div>
-    </section>
-    </section>
-<!-- Lab 2: HTTP Security Headers -->
-    <section class="card">
-        <h2>Cyber Security Lab 2: HTTP Security Headers Analyzer</h2>
-        <p>Odaberite jedno od ključnih sigurnosnih zaglavlja kako biste naučili kako ono štiti poslužitelj i preglednik od napada:</p>
-        
-        <select id="headerSelect" onchange="analizirajHeader()" style="width: 100%; padding: 10px; background-color: #0d1117; color: #00ff66; border: 1px solid #30363d; border-radius: 4px; font-size: 1em; cursor: pointer;">
-            <option value="">-- Odaberite HTTP Zaglavlje --</option>
-            <option value="hsts">Strict-Transport-Security (HSTS)</option>
-            <option value="csp">Content-Security-Policy (CSP)</option>
-            <option value="xfo">X-Frame-Options</option>
-            <option value="xcto">X-Content-Type-Options</option>
-        </select>
+        <!-- Tab: Lab 1 -->
+        <div id="tab-lab1" class="tab-content">
+            <section class="card">
+                <h2>Cyber Security Lab 1: Reflected XSS Simulacija</h2>
+                <p>Testirajte unos kako biste vidjeli razliku između ranjivog (nefiltriranog) i sigurnog (sanitiziranog) prikaza korisničkog unosa:</p>
 
-        <div id="headerResult" class="project-item" style="margin-top: 15px; display: none;">
-            <h3 id="headerTitle" style="color: #58a6ff; margin-top: 0;"></h3>
-            <p><strong>Funkcija:</strong> <span id="headerDesc"></span></p>
-            <p><strong>Štiti od napada:</strong> <span id="headerProtection" style="color: #ff5555; font-weight: bold;"></span></p>
-            <p><strong>Primjer konfiguracije:</strong></p>
-            <pre><code id="headerExample" style="background-color: #161b22; color: #00ff66; padding: 8px; display: block; border-radius: 4px; border: 1px solid #30363d;"></code></pre>
-        </div>
-    </section>
-    <!-- Lab 3: Security Incident Reporter (POST Fetch Demo) -->
-    <section class="card" style="margin-top: 20px;">
-        <h2>Cyber Security Lab 3: Incident Report System (POST Demo)</h2>
-        <p>Ispunite formu ispod za prijavu sigurnosnog incidenta. Podaci se šalju na testni poslužitelj putem POST `fetch` zahtjeva.</p>
-        
-        <form id="incidentForm" onsubmit="posaljiIncident(event)" style="display: flex; flex-direction: column; gap: 12px;">
-            <div>
-                <label for="reporterName" style="display: block; margin-bottom: 5px;">Ime prijavitelja:</label>
-                <input type="text" id="reporterName" required placeholder="npr. Ana Anić" style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
-            </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="userInput" style="display: block; margin-bottom: 5px;">Unesite tekst ili skriptu (npr. &lt;script&gt;alert('XSS')&lt;/script&gt;):</label>
+                    <input type="text" id="userInput" placeholder="Unesite tekst ovdje..." style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                </div>
 
-            <div>
-                <label for="incidentType" style="display: block; margin-bottom: 5px;">Tip incidenta:</label>
-                <select id="incidentType" required style="width: 100%; padding: 8px; background-color: #0d1117; color: #00ff66; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
-                    <option value="Phishing Mail">Phishing Mail</option>
-                    <option value="Malware Detekcija">Malware Detekcija</option>
-                    <option value="Sumnjivi Logini">Sumnjiva aktivnost računa</option>
-                    <option value="DDoS Napad">DDoS Napad</option>
-                </select>
-            </div>
+                <button onclick="testirajUnos()" style="background-color: #238636; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">Testiraj Unos</button>
 
-            <div>
-                <label for="incidentDesc" style="display: block; margin-bottom: 5px;">Opis incidenta:</label>
-                <textarea id="incidentDesc" rows="3" required placeholder="Opišite što se dogodilo..." style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;"></textarea>
-            </div>
+                <div style="margin-top: 20px;">
+                    <h3>Ranjivi Prikaz (Ranjen na XSS):</h3>
+                    <div id="vulnerableOutput" style="background-color: #21262d; padding: 10px; border-radius: 4px; min-height: 40px; border: 1px solid #da3633;"></div>
+                </div>
 
-            <button type="submit" id="submitBtn" style="padding: 10px; background-color: #238636; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
-                Šalji Prijavu (POST Request)
-            </button>
-        </form>
-
-        <div id="postResult" class="project-item" style="margin-top: 15px; display: none;">
-            <h3 style="color: #58a6ff; margin-top: 0;">Odgovor Poslužitelja (Server Response):</h3>
-            <p><strong>Status slanja:</strong> <span id="postStatus" style="color: #00ff66; font-weight: bold;"></span></p>
-            <p><strong>Primljeni JSON podaci s poslužitelja:</strong></p>
-            <pre><code id="postOutput" style="background-color: #161b22; color: #00ff66; padding: 8px; display: block; border-radius: 4px; border: 1px solid #30363d; white-space: pre-wrap;"></code></pre>
-        </div>
-    </section>
-    <!-- Lab 4: Password Strength & Entropy Analyzer -->
-    <section class="card" style="margin-top: 20px;">
-        <h2>Cyber Security Lab 4: Password Strength & Entropy Analyzer</h2>
-        <p>Unesite lozinku kako biste izračunali njenu matematičku entropiju (jačina u bitovima) i procijenili vrijeme potrebno za brute-force napad:</p>
-
-        <div style="margin-bottom: 15px;">
-            <label for="passInput" style="display: block; margin-bottom: 5px;">Testna lozinka:</label>
-            <input type="password" id="passInput" oninput="analizirajLozinku()" placeholder="Unesite lozinku za analizu..." style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: monospace;">
-            <label style="display: inline-block; margin-top: 5px; font-size: 0.9em; cursor: pointer; color: #8b949e;">
-                <input type="checkbox" onclick="prikaziLozinku()" style="margin-right: 5px;"> Prikaži tekst lozinke
-            </label>
+                <div style="margin-top: 15px;">
+                    <h3>Sigurni Prikaz (Sanitiziran Unos):</h3>
+                    <div id="safeOutput" style="background-color: #21262d; padding: 10px; border-radius: 4px; min-height: 40px; border: 1px solid #238636;"></div>
+                </div>
+            </section>
         </div>
 
-        <div id="passAnalysis" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
-            <!-- Indikator traka -->
-            <div style="width: 100%; background-color: #21262d; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
-                <div id="strengthMeter" style="width: 0%; height: 100%; transition: width 0.3s, background-color 0.3s;"></div>
-            </div>
+        <!-- Tab: Lab 2 -->
+        <div id="tab-lab2" class="tab-content">
+            <section class="card">
+                <h2>Cyber Security Lab 2: HTTP Security Headers Analizator</h2>
+                <p>Odaberite sigurnosno zaglavlje kako biste saznali njegovu ulogu, primjenu i od kojih vas napada štiti:</p>
 
-            <p style="margin: 5px 0;"><strong>Entropija:</strong> <span id="entropyBits" style="color: #58a6ff; font-weight: bold;">0</span> bitova</p>
-            <p style="margin: 5px 0;"><strong>Ocjena jačine:</strong> <span id="strengthLabel" style="font-weight: bold;">-</span></p>
-            <p style="margin: 5px 0;"><strong>Veličina skupa znakova (Pool Size):</strong> <span id="poolSize">0</span></p>
-            <p style="margin: 5px 0;"><strong>Procjena brute-force vremena (10 milijardi pokušaja/s):</strong> <span id="crackTime" style="color: #00ff66; font-weight: bold;">-</span></p>
+                <div style="margin-bottom: 15px;">
+                    <label for="headerSelect" style="display: block; margin-bottom: 5px;">Odaberite HTTP Zaglavlje:</label>
+                    <select id="headerSelect" onchange="analizirajHeader()" style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                        <option value="">-- Odaberite header --</option>
+                        <option value="hsts">Strict-Transport-Security (HSTS)</option>
+                        <option value="csp">Content-Security-Policy (CSP)</option>
+                        <option value="xfo">X-Frame-Options</option>
+                        <option value="xcto">X-Content-Type-Options</option>
+                    </select>
+                </div>
 
-            <div style="margin-top: 10px;">
-                <strong>Preporuke za poboljšanje:</strong>
-                <ul id="passSuggestions" style="margin-top: 5px; padding-left: 20px; color: #8b949e;"></ul>
-            </div>
+                <div id="headerResult" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
+                    <h3 id="headerTitle" style="margin-top: 0; color: #58a6ff;"></h3>
+                    <p><strong>Opis:</strong> <span id="headerDesc"></span></p>
+                    <p><strong>Štiti od:</strong> <span id="headerProtection" style="color: #3fb950;"></span></p>
+                    <p><strong>Primjer konfiguracije:</strong></p>
+                    <pre style="background-color: #0d1117; padding: 10px; border-radius: 4px; overflow-x: auto;"><code id="headerExample" style="color: #e6edf3;"></code></pre>
+                </div>
+            </section>
         </div>
-    </section>
-    <footer>
-        <p>&copy; 2026 Cyber Security Student. Sva prava pridržana.</p>
+
+        <!-- Tab: Lab 3 -->
+        <div id="tab-lab3" class="tab-content">
+            <section class="card">
+                <h2>Cyber Security Lab 3: Incident Report (POST Request Simulator)</h2>
+                <p>Simulirajte slanje prijave sigurnosnog incidenta na vanjski poslužitelj putem asinkronog HTTP POST zahtjeva (`fetch` API):</p>
+
+                <form onsubmit="posaljiIncident(event)" style="display: flex; flex-direction: column; gap: 12px;">
+                    <div>
+                        <label for="reporterName" style="display: block; margin-bottom: 5px;">Ime / Alias Prijavitelja:</label>
+                        <input type="text" id="reporterName" required placeholder="npr. SecAnalyst1" style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                    </div>
+
+                    <div>
+                        <label for="incidentType" style="display: block; margin-bottom: 5px;">Tip Incidenta:</label>
+                        <select id="incidentType" required style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                            <option value="Phishing">Phishing e-mail</option>
+                            <option value="Malware">Sumnjiva datoteka / Malware</option>
+                            <option value="Unauthorized Access">Neovlašteni pristup</option>
+                            <option value="Data Leak">Curenje podataka</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="incidentDesc" style="display: block; margin-bottom: 5px;">Opis Incidenta:</label>
+                        <textarea id="incidentDesc" rows="3" required placeholder="Kratko opišite što se dogodilo..." style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;"></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" style="background-color: #1f6beb; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; width: fit-content;">Šalji Prijavu (POST Request)</button>
+                </form>
+
+                <div id="postResult" style="display: none; margin-top: 20px; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
+                    <h3 style="margin-top: 0;">Status Odgovora Poslužitelja:</h3>
+                    <p id="postStatus" style="font-weight: bold;"></p>
+                    <p><strong>Vraćeni JSON podaci (Server Response):</strong></p>
+                    <pre style="background-color: #0d1117; padding: 10px; border-radius: 4px; overflow-x: auto;"><code id="postOutput" style="color: #58a6ff;"></code></pre>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tab: Lab 4 -->
+        <div id="tab-lab4" class="tab-content">
+            <section class="card">
+                <h2>Cyber Security Lab 4: Password Strength & Entropy Analyzer</h2>
+                <p>Unesite lozinku kako biste izračunali njenu matematičku entropiju (jačina u bitovima) i procijenili vrijeme potrebno za brute-force napad:</p>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="passInput" style="display: block; margin-bottom: 5px;">Testna lozinka:</label>
+                    <input type="password" id="passInput" oninput="analizirajLozinku()" placeholder="Unesite lozinku za analizu..." style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: monospace;">
+                    <label style="display: inline-block; margin-top: 5px; font-size: 0.9em; cursor: pointer; color: #8b949e;">
+                        <input type="checkbox" onclick="prikaziLozinku()" style="margin-right: 5px;"> Prikaži tekst lozinke
+                    </label>
+                </div>
+
+                <div id="passAnalysis" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
+                    <div style="width: 100%; background-color: #21262d; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
+                        <div id="strengthMeter" style="width: 0%; height: 100%; transition: width 0.3s, background-color 0.3s;"></div>
+                    </div>
+
+                    <p style="margin: 5px 0;"><strong>Entropija:</strong> <span id="entropyBits" style="color: #58a6ff; font-weight: bold;">0</span> bitova</p>
+                    <p style="margin: 5px 0;"><strong>Ocjena jačine:</strong> <span id="strengthLabel" style="font-weight: bold;">-</span></p>
+                    <p style="margin: 5px 0;"><strong>Veličina skupa znakova (Pool Size):</strong> <span id="poolSize">0</span></p>
+                    <p style="margin: 5px 0;"><strong>Procjena brute-force vremena (10 milijardi pokušaja/s):</strong> <span id="crackTime" style="color: #00ff66; font-weight: bold;">-</span></p>
+
+                    <div style="margin-top: 10px;">
+                        <strong>Preporuke za poboljšanje:</strong>
+                        <ul id="passSuggestions" style="margin-top: 5px; padding-left: 20px; color: #8b949e;"></ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #30363d; color: #8b949e;">
+        <p>© Cyber Security Portfolio & Labovi — Izrađeno u edukativne svrhe</p>
     </footer>
-<!-- Povezivanje JavaScript datoteke -->
+
     <script src="script.js"></script>
-<!-- Povezivanje JavaScript datoteke -->
-    <script src="script.js"></script>
-</body>
 </body>
 </html>

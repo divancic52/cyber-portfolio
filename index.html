@@ -3,68 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security Portfolio & Testing Labs</title>
+    <title>Domagoj Ivančić | Cyber Security & Crisis Management Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
+    <!-- NAVIGACIJA -->
+    <header class="glass-header">
         <div class="header-container">
-            <div>
-                <h1>🛡️ Cyber Security Portfolio & Testing Labs</h1>
-                <p>Interaktivni alati i demonstracija mrežnih i web sigurnosnih koncepta</p>
+            <div class="logo">
+                <span class="logo-badge">DI</span>
+                <div class="logo-text">
+                    <strong>Domagoj Ivančić</strong>
+                    <small>Security & Crisis Specialist</small>
+                </div>
             </div>
             <button id="themeToggleBtn" onclick="toggleTheme()" class="theme-btn">🌙 Dark Mode</button>
         </div>
     </header>
 
-    <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="openTab(event, 'about')">👨‍💻 O meni</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab1')">Lab 1: XSS Analysis</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab2')">Lab 2: Security Headers</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab3')">Lab 3: REST API</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab4')">Lab 4: Password Entropy</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab5')">Lab 5: SHA-256 Hasher</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab6')">Lab 6: Report Generator</button>
-        <button class="tab-btn" onclick="openTab(event, 'lab7')">Lab 7: Port Scanner</button>
+    <!-- TAB NAVIGACIJA -->
+    <nav class="nav-tabs-wrapper">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'about')">👨‍💻 O meni</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab1')">🧪 Lab 1: XSS</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab2')">🔒 Lab 2: Headers</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab3')">🚀 Lab 3: REST API</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab4')">🔑 Lab 4: Entropy</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab5')">⚡ Lab 5: Hasher</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab6')">📄 Lab 6: Report</button>
+            <button class="tab-btn" onclick="openTab(event, 'lab7')">🌐 Lab 7: Port Scanner</button>
+        </div>
     </nav>
 
     <main class="container">
 
         <!-- TAB: O MENI -->
         <div id="about" class="tab-content active">
-            <h2>👨‍💻 O autoru</h2>
-            <p>Profil, kvalifikacije i profesionalno iskustvo u području sigurnosti i kriznog menadžmenta.</p>
-
-            <div class="card">
-                <!-- AI Cyber Security Slika -->
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSeICC5XY7dHXXFDgS-yf5V0kaSNa7tikGs_zIzLLaE1n6L65akWGYLD0HY81MkgmCs5PX-LoL-vhGWPMs" alt="Cyber Security AI Shield" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            
+            <!-- HERO SEKCIJA -->
+            <section class="hero-card">
+                <div class="hero-badge">🛡️ Krizni Menadžment & Cyber Security</div>
+                <h1 class="hero-title">Domagoj Ivančić</h1>
+                <p class="hero-subtitle">bacc.ing.sec. | mag.ing.admin.chris.</p>
+                <div class="hero-meta">
+                    <span>📍 Bjelovar, Hrvatska</span>
+                    <span>⏳ 5+ godina iskustva</span>
                 </div>
+            </section>
 
-                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-                    <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--accent-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
-                        DI
+            <!-- STATISTIKA / KLJUČNE ZNAČAJKE -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>5+</h3>
+                    <p>Godina iskustva u kriznom upravljanju</p>
+                </div>
+                <div class="stat-card">
+                    <h3>7</h3>
+                    <p>Interaktivnih Cyber Security labova</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Fokus na otpornost i sigurnost sustava</p>
+                </div>
+            </div>
+
+            <!-- DETALJAN OPIS -->
+            <div class="card glass-card">
+                <h3>🎯 O autoru & Stručna profilacija</h3>
+                <p class="lead-text">
+                    Specijalist kriznog menadžmenta s više od 5 godina praktičnog iskustva u procjeni rizika, upravljanju izvanrednim situacijama i planiranju kontinuiteta poslovanja.
+                </p>
+                <p>
+                    Spajam inženjerska znanja iz područja tehničke i fizičke sigurnosti s modernim web i kibernetičkim konceptima. Moj je fokus na izgradnji otpornih sustava (Resilience), analizi ranjivosti te sveobuhvatnoj zaštiti informacijskih i poslovnih resursa.
+                </p>
+
+                <h4 style="margin-top: 30px;">🛠️ Ključna područja eksperteze</h4>
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <h5>🚨 Krizni menadžment</h5>
+                        <p>Odgovor na izvanredne događaje, procjena rizika i izrada planova kontinuiteta poslovanja (BCP).</p>
                     </div>
-                    <div>
-                        <h3 style="margin: 0; color: var(--heading-color);">Domagoj Ivančić</h3>
-                        <p style="margin: 5px 0 0 0; color: var(--accent-color); font-weight: bold;">bacc.ing.sec. | mag.ing.admin.chris.</p>
-                        <small style="color: var(--text-muted);">📍 Bjelovar, Hrvatska</small>
+                    <div class="expertise-item">
+                        <h5>🛡️ Inženjerstvo sigurnosti</h5>
+                        <p>Analiza ranjivosti fizičke i tehničke zaštite te primjena sigurnosnih standarda.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h5>💻 Cyber & Web Security</h5>
+                        <p>Testiranje web ranjivosti (XSS, Security Headers), kriptografski API-ji i mrežna analiza.</p>
                     </div>
                 </div>
-
-                <hr style="border: none; border-top: 1px solid var(--border-color); margin: 20px 0;">
-
-                <h4>🎯 O meni & Stručna profilacija</h4>
-                <p>Specijalist kriznog menadžmenta s 5 godina iskustva u procjeni rizika, upravljanju izvanrednim situacijama i planiranju kontinuiteta poslovanja.</p>
-                <p>Spajam inženjerska znanja iz područja tehničke i fizičke sigurnosti s modernim web i kibernetičkim konceptima. Moj je fokus na izgradnji otpornih sustava (Resilience), analizi ranjivosti te sveobuhvatnoj zaštiti informacijskih i poslovnih resursa.</p>
-
-                <h4 style="margin-top: 25px;">🛠️ Ključna područja eksperteze</h4>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Krizni menadžment & Kontinuitet poslovanja:</strong> Odgovor na izvanredne događaje, upravljanje krizama, procjena rizika i izrada kriznih planova.</li>
-                    <li><strong>Inženjerstvo sigurnosti:</strong> Procjena ranjivosti fizičke i tehničke zaštite te primjena sigurnosnih standarda.</li>
-                    <li><strong>Cyber Security & Web Security:</strong> Testiranje web ranjivosti (XSS, Security Headers), kriptografski API-ji i mrežna analiza.</li>
-                </ul>
             </div>
         </div>
 
@@ -73,7 +104,7 @@
             <h2>🧪 Lab 1: Reflected XSS & Sanitization</h2>
             <p>Demonstracija ranjivosti na Cross-Site Scripting (XSS) i pravilne sanitizacije korisničkog unosa.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <h3>Testirajte XSS unos</h3>
                 <div class="code-box">
                     <pre id="xssSampleCode"><code>&lt;script&gt;alert('XSS Ranjivost!')&lt;/script&gt;</code></pre>
@@ -96,7 +127,7 @@
             <h2>🔒 Lab 2: HTTP Security Headers Inspector</h2>
             <p>Pregled i analiza ključnih sigurnosnih zaglavlja za zaštitu web aplikacija.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <h3>Ključna Sigurnosna Zaglavlja</h3>
                 <div class="code-box">
                     <pre id="cspSampleCode"><code>Content-Security-Policy: default-src 'self'; script-src 'self' https://trustedscripts.example.com;
@@ -117,7 +148,7 @@ X-Frame-Options: DENY</code></pre>
             <h2>🚀 Lab 3: REST API POST Request Tester</h2>
             <p>Testiranje asinkronih HTTP POST zahtjeva i analiza odgovora poslužitelja.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <h3>Pošaljite Testne Podatke (JSON)</h3>
                 <input type="text" id="apiTitle" placeholder="Naslov poruke" value="Security Test">
                 <br><br>
@@ -136,7 +167,7 @@ X-Frame-Options: DENY</code></pre>
             <h2>🔑 Lab 4: Password Entropy Calculator</h2>
             <p>Izračun Shannonove entropije lozinke i procjena otpornosti na Brute-Force napade.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <input type="text" id="pwdInput" oninput="calculateEntropy()" placeholder="Unesite lozinku za analizu..." value="Moj4SigurnaLozinka123!">
                 <div id="entropyResult" class="result-box">
                     <em>Upišite lozinku za izračun entropije...</em>
@@ -149,7 +180,7 @@ X-Frame-Options: DENY</code></pre>
             <h2>⚡ Lab 5: Real-Time SHA-256 Hasher</h2>
             <p>Generiranje SHA-256 sažetka u stvarnom vremenu pomoću nativnog Web Crypto API-ja.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <input type="text" id="hashInput" oninput="generateHash()" placeholder="Unesite tekst za sažimanje..." value="CyberSecurity2026">
                 <br><br>
                 <div class="code-box">
@@ -164,7 +195,7 @@ X-Frame-Options: DENY</code></pre>
             <h2>📄 Lab 6: Security Audit Report Generator</h2>
             <p>Generiranje i preuzimanje izvješća o sigurnosnoj provjeri u tekstualnom obliku.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <button onclick="generateReport()" class="btn btn-success">⬇️ Preuzmi Izvješće (.txt)</button>
                 <div id="reportPreview" class="result-box">
                     <em>Izvješće spremno za preuzimanje...</em>
@@ -177,7 +208,7 @@ X-Frame-Options: DENY</code></pre>
             <h2>🌐 Lab 7: Port Scanner Simulator</h2>
             <p>Simulacija mrežnog skeniranja portova (Nmap koncept) i sigurnosna procjena izloženih servisa.</p>
 
-            <div class="card">
+            <div class="card glass-card">
                 <div class="scan-controls">
                     <input type="text" id="targetIp" value="192.168.1.1" placeholder="Unesite IP adresu (npr. 192.168.1.1)">
                     <select id="scanProfile">

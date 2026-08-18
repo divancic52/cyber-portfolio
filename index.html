@@ -31,6 +31,7 @@
         <button class="tab-btn" onclick="otvoriTab('lab4', event)">Lab 4: Password Entropy</button>
         <button class="tab-btn" onclick="otvoriTab('lab5', event)">Lab 5: Hash Generator</button>
         <button class="tab-btn" onclick="otvoriTab('lab6', event)">Lab 6: Report Generator</button>
+        <button class="tab-btn" onclick="openTab(event, 'lab7')">Lab 7: Port Scanner</button>
         <button class="tab-btn tab-all" onclick="otvoriTab('all', event)">Prikaži sve</button>
     </nav>
 
@@ -228,7 +229,27 @@
                         <label for="repAnalyst" style="display: block; margin-bottom: 5px;">Ime i prezime analitičara:</label>
                         <input type="text" id="repAnalyst" placeholder="npr. Ivan Horvat" style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
                     </div>
+<!-- LAB 7: PORT SCANNER SIMULATOR -->
+<div id="lab7" class="tab-content" style="display:none;">
+    <h2>🌐 Lab 7: Port Scanner Simulator</h2>
+    <p>Simulacija mrežnog skeniranja portova (Nmap koncept) i sigurnosna procjena izloženih servisa.</p>
 
+    <div class="card">
+        <div style="position: relative; margin-top: 10px;">
+    <pre id="xssPayloadCode" style="background: #0d1117; padding: 12px; border-radius: 6px; border: 1px solid #30363d; overflow-x: auto;"><code>&lt;script&gt;alert('XSS Test')&lt;/script&gt;</code></pre>
+    <button onclick="copyCode('xssPayloadCode', this)" class="copy-btn">📋 Copy</button>
+</div>
+
+        <div id="scanProgressContainer" style="display:none; margin-bottom: 15px;">
+            <div style="background: #21262d; border-radius: 6px; overflow: hidden; height: 12px;">
+                <div id="scanProgressBar" style="width: 0%; height: 100%; background: #58a6ff; transition: width 0.3s;"></div>
+            </div>
+            <small id="scanStatusText" style="color: #8b949e; display: block; margin-top: 5px;">Priprema skeniranja...</small>
+        </div>
+
+        <div id="scanResults"></div>
+    </div>
+</div>
                     <div>
                         <label for="repTarget" style="display: block; margin-bottom: 5px;">Ciljani sustav / Web lokacija:</label>
                         <input type="text" id="repTarget" placeholder="npr. example.com ili Interni API" style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">

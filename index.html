@@ -82,6 +82,44 @@
             <pre><code id="headerExample" style="background-color: #161b22; color: #00ff66; padding: 8px; display: block; border-radius: 4px; border: 1px solid #30363d;"></code></pre>
         </div>
     </section>
+    <!-- Lab 3: Security Incident Reporter (POST Fetch Demo) -->
+    <section class="card" style="margin-top: 20px;">
+        <h2>Cyber Security Lab 3: Incident Report System (POST Demo)</h2>
+        <p>Ispunite formu ispod za prijavu sigurnosnog incidenta. Podaci se šalju na testni poslužitelj putem POST `fetch` zahtjeva.</p>
+        
+        <form id="incidentForm" onsubmit="posaljiIncident(event)" style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+                <label for="reporterName" style="display: block; margin-bottom: 5px;">Ime prijavitelja:</label>
+                <input type="text" id="reporterName" required placeholder="npr. Ana Anić" style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+            </div>
+
+            <div>
+                <label for="incidentType" style="display: block; margin-bottom: 5px;">Tip incidenta:</label>
+                <select id="incidentType" required style="width: 100%; padding: 8px; background-color: #0d1117; color: #00ff66; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                    <option value="Phishing Mail">Phishing Mail</option>
+                    <option value="Malware Detekcija">Malware Detekcija</option>
+                    <option value="Sumnjivi Logini">Sumnjiva aktivnost računa</option>
+                    <option value="DDoS Napad">DDoS Napad</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="incidentDesc" style="display: block; margin-bottom: 5px;">Opis incidenta:</label>
+                <textarea id="incidentDesc" rows="3" required placeholder="Opišite što se dogodilo..." style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" style="padding: 10px; background-color: #238636; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                Šalji Prijavu (POST Request)
+            </button>
+        </form>
+
+        <div id="postResult" class="project-item" style="margin-top: 15px; display: none;">
+            <h3 style="color: #58a6ff; margin-top: 0;">Odgovor Poslužitelja (Server Response):</h3>
+            <p><strong>Status slanja:</strong> <span id="postStatus" style="color: #00ff66; font-weight: bold;"></span></p>
+            <p><strong>Primljeni JSON podaci s poslužitelja:</strong></p>
+            <pre><code id="postOutput" style="background-color: #161b22; color: #00ff66; padding: 8px; display: block; border-radius: 4px; border: 1px solid #30363d; white-space: pre-wrap;"></code></pre>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2026 Cyber Security Student. Sva prava pridržana.</p>
     </footer>

@@ -41,11 +41,34 @@
             <li><strong>GitHub:</strong> Moj profil na GitHubu</li>
             <li><strong>LinkedIn:</strong> Uskoro</li>
         </ul>
+        <!-- Sekcija: Cyber Security Lab (XSS Demonstracija) -->
+    <section class="card">
+        <h2>Cyber Security Lab: XSS Ranjivost & Zaštita</h2>
+        <p>Unesite tekst ispod kako biste vidjeli razliku između ranjivog (innerHTML) i sigurnog (textContent) prikaza u JavaScriptu:</p>
+        
+        <input type="text" id="userInput" placeholder="Upišite nešto ili probajte XSS npr: <img src=x onerror=alert('XSS!')>" style="width: 80%; padding: 8px; margin-bottom: 10px;">
+        <br>
+        <button onclick="testirajUnos()" style="background-color: #00ff66; color: #0d1117; font-weight: bold; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Testiraj Unos</button>
+
+        <div class="project-item" style="margin-top: 15px;">
+            <strong style="color: #ff5555;">🔴 Ranjivi prikaz (innerHTML):</strong>
+            <div id="vulnerableOutput" style="color: #ffffff; padding-top: 5px;"></div>
+        </div>
+
+        <div class="project-item" style="margin-top: 15px; border-left-color: #58a6ff;">
+            <strong style="color: #58a6ff;">🟢 Siguran prikaz (textContent):</strong>
+            <div id="safeOutput" style="color: #ffffff; padding-top: 5px;"></div>
+        </div>
+    </section>
     </section>
 
     <footer>
         <p>&copy; 2026 Cyber Security Student. Sva prava pridržana.</p>
     </footer>
-
+<!-- Povezivanje JavaScript datoteke -->
+    <script src="script.js"></script>
+<!-- Povezivanje JavaScript datoteke -->
+    <script src="script.js"></script>
+</body>
 </body>
 </html>

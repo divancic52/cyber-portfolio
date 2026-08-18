@@ -1,4 +1,4 @@
-// --- LOGIKA ZA TABOVE (MORA BITI PRVA) ---
+// --- LOGIKA ZA TABOVE ---
 function otvoriTab(tabId, event) {
     // 1. Sakrij sve tab sadržaje
     const allContents = document.querySelectorAll('.tab-content');
@@ -13,13 +13,12 @@ function otvoriTab(tabId, event) {
         btn.classList.remove('active');
     });
 
-    // 3. Ako je odabran "Prikaži sve"
+    // 3. Prikaz odabranog taba
     if (tabId === 'all') {
         allContents.forEach(content => {
             content.style.display = 'block';
         });
     } else {
-        // Prikaži samo traženi tab
         const targetContent = document.getElementById('tab-' + tabId);
         if (targetContent) {
             targetContent.style.display = 'block';
@@ -27,15 +26,14 @@ function otvoriTab(tabId, event) {
         }
     }
 
-    // 4. Označi kliknuti gumb kao aktivni
+    // 4. Označi gumb kao aktivan
     if (event && event.currentTarget) {
         event.currentTarget.classList.add('active');
     }
 }
 
-// Inicijalno pokretanje kada se stranica učita
+// Inicijalno učitavanje pri otvaranju stranice
 window.addEventListener('DOMContentLoaded', () => {
-    // Sakrij sve na početku pa otvori 'about'
     otvoriTab('about', null);
 });
 
@@ -242,6 +240,8 @@ function formatirajVrijeme(sekunde) {
     if (godine < 1000000000) return `${(godine / 1000000).toFixed(1)} milijuna godina`;
     return "Više od milijardu godina";
 }
+
+
 // --- LAB 5: SHA-256 HASH GENERATOR & VERIFIER ---
 async function generirajHash() {
     const tekst = document.getElementById("hashInput").value;
@@ -257,18 +257,14 @@ async function generirajHash() {
 
     box.style.display = "block";
 
-    // Pretvaranje teksta u Bajtove i izračun SHA-256 preko Web Crypto API-ja
     const encoder = new TextEncoder();
     const data = encoder.encode(tekst);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
 
-    // Pretvaranje ArrayBuffer u Hex string
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 
     output.textContent = hashHex;
-
-    // Ponovno provjeri podudaranje ako je unesena očekivana vrijednost
     provjeriHashMatch();
 }
 
@@ -292,6 +288,8 @@ function provjeriHashMatch() {
         matchStatus.style.color = "#ff5555";
     }
 }
+
+
 // --- LAB 6: SECURITY REPORT GENERATOR ---
 function preuzmiTxtIzvjesce() {
     const analiticar = document.getElementById("repAnalyst").value || "Nije navedeno";

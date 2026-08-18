@@ -61,7 +61,27 @@
         </div>
     </section>
     </section>
+<!-- Lab 2: HTTP Security Headers -->
+    <section class="card">
+        <h2>Cyber Security Lab 2: HTTP Security Headers Analyzer</h2>
+        <p>Odaberite jedno od ključnih sigurnosnih zaglavlja kako biste naučili kako ono štiti poslužitelj i preglednik od napada:</p>
+        
+        <select id="headerSelect" onchange="analizirajHeader()" style="width: 100%; padding: 10px; background-color: #0d1117; color: #00ff66; border: 1px solid #30363d; border-radius: 4px; font-size: 1em; cursor: pointer;">
+            <option value="">-- Odaberite HTTP Zaglavlje --</option>
+            <option value="hsts">Strict-Transport-Security (HSTS)</option>
+            <option value="csp">Content-Security-Policy (CSP)</option>
+            <option value="xfo">X-Frame-Options</option>
+            <option value="xcto">X-Content-Type-Options</option>
+        </select>
 
+        <div id="headerResult" class="project-item" style="margin-top: 15px; display: none;">
+            <h3 id="headerTitle" style="color: #58a6ff; margin-top: 0;"></h3>
+            <p><strong>Funkcija:</strong> <span id="headerDesc"></span></p>
+            <p><strong>Štiti od napada:</strong> <span id="headerProtection" style="color: #ff5555; font-weight: bold;"></span></p>
+            <p><strong>Primjer konfiguracije:</strong></p>
+            <pre><code id="headerExample" style="background-color: #161b22; color: #00ff66; padding: 8px; display: block; border-radius: 4px; border: 1px solid #30363d;"></code></pre>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2026 Cyber Security Student. Sva prava pridržana.</p>
     </footer>

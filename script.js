@@ -202,3 +202,26 @@ function formatirajVrijeme(sekunde) {
     if (godine < 1000000000) return `${(godine / 1000000).toFixed(1)} milijuna godina`;
     return "Više od milijardu godina";
 }
+// --- LOGIKA ZA TABOVE ---
+function otvoriTab(tabId, event) {
+    const allContents = document.querySelectorAll('.tab-content');
+    const allButtons = document.querySelectorAll('.tab-btn');
+
+    if (tabId === 'all') {
+        // Prikaži sve tabove
+        allContents.forEach(content => content.classList.add('active'));
+    } else {
+        // Sakrij sve tabove pa prikaži samo odabrani
+        allContents.forEach(content => content.classList.remove('active'));
+        const targetContent = document.getElementById(`tab-${tabId}`);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
+    }
+
+    // Ažuriraj aktivni gumb
+    allButtons.forEach(btn => btn.classList.remove('active'));
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+}

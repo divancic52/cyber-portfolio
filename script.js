@@ -49,3 +49,59 @@ function analizirajHeader() {
         rezultatBox.style.display = "none";
     }
 }
+
+// --- LAB 3: POST FETCH REQ SIMULATOR ---
+async function posaljiIncident(event) {
+    // Spriječimo klasično osvježavanje stranice prilikom slanja forme
+    event.preventDefault();
+
+    const btn = document.getElementById("submitBtn");
+    const resultBox = document.getElementById("postResult");
+    const statusText = document.getElementById("postStatus");
+    const outputCode = document.getElementById("postOutput");
+
+    // Pročitamo vrijednosti iz forme
+    const podaciZaSlanje = {
+        prijavio: document.getElementById("reporterName").value,
+        tipIncidenta: document.getElementById("incidentType").value,
+        opis: document.getElementById("incidentDesc").value,
+        vrijemePrijave: new Date().toISOString()
+    };
+
+    // Priprema sučelja za slanje
+    btn.disabled = true;
+    btn.textContent = "Šaljem podatke...";
+
+    try {
+        // Slanje POST zahtjeva
+        const odgovor = await fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(podaciZaSlanje)
+        });
+
+        if (!odgovor.ok) {
+            throw new Error(`Pogreška sa poslužiteljem: Status ${odgovor.status}`);
+        }
+
+        const odgovorPodaci = await odgovor.json();
+
+        // Prikaz rezultata korisniku
+        statusText.style.color = "#00ff66";
+        statusText.textContent = `Uspješno poslano! (HTTP Status: ${odgovor.status} Created)`;
+        outputCode.textContent = JSON.stringify(odgovorPodaci, null, 2);
+        resultBox.style.display = "block";
+
+    } catch (greska) {
+        statusText.style.color = "#ff5555";
+        statusText.textContent = `Greška: ${greska.message}`;
+        outputCode.textContent = "Nije moguće poslati podatke na poslužitelj.";
+        resultBox.style.display = "block";
+    } finally {
+        // Vrati gumb u početno stanje
+        btn.disabled = false;
+        btn.textContent = "Šalji Prijavu (POST Request)";
+    }
+}

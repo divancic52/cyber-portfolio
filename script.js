@@ -386,10 +386,10 @@ function toggleTheme() {
     body.classList.toggle("light-mode");
 
     if (body.classList.contains("light-mode")) {
-        btn.textContent = "🌙 Dark Mode";
+        if (btn) btn.textContent = "🌙 Dark Mode";
         localStorage.setItem("theme", "light");
     } else {
-        btn.textContent = "☀️ Light Mode";
+        if (btn) btn.textContent = "☀️ Light Mode";
         localStorage.setItem("theme", "dark");
     }
 }

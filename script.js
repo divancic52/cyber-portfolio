@@ -404,3 +404,122 @@ window.addEventListener("DOMContentLoaded", () => {
         if (btn) btn.textContent = "🌙 Dark Mode";
     }
 });
+// ==========================================
+// --- LAB 7: PORT SCANNER SIMULATOR LOGIKA ---
+// ==========================================
+function runPortScan() {
+    const ip = document.getElementById("targetIp").value.trim() || "192.168.1.1";
+    const profile = document.getElementById("scanProfile").value;
+    const progressContainer = document.getElementById("scanProgressContainer");
+    const progressBar = document.getElementById("scanProgressBar");
+    const statusText = document.getElementById("scanStatusText");
+    const resultsDiv = document.getElementById("scanResults");
+
+    progressContainer.style.display = "block";
+    progressBar.style.width = "0%";
+    statusText.textContent = "Inicijalizacija skeniranja cilja: " + ip + "...";
+    resultsDiv.innerHTML = "";
+
+    const portsToScan = profile === "quick"
+        ? [
+            { port: 21, service: "FTP", status: "Closed", risk: "Low", tip: "Onemogućite anonimni pristup." },
+            { port: 22, service: "SSH", status: "Open", risk: "Medium", tip: "Koristite SSH ključeve umjesto lozinke i onemogućite root prijavu." },
+            { port: 80, service: "HTTP", status: "Open", risk: "High", tip: "Preusmjerite nezaštićeni promet na HTTPS (port 443)." },
+            { port: 443, service: "HTTPS", status: "Open", risk: "Low", tip: "Provjerite valjanost TLS certifikata i ciphersuite-a." }
+          ]
+        : [
+            { port: 21, service: "FTP", status: "Closed", risk: "Low", tip: "Onemogućite ako se servis ne koristi." },
+            { port: 22, service: "SSH", status: "Open", risk: "Medium", tip: "Promijenite zadani port 22 i aktivirajte fail2ban." },
+            { port: 23, service: "Telnet", status: "Open", risk: "CRITICAL", tip: "Kritično! Telnet šalje podatke neenkrptirano. Hitno prijeđite na SSH." },
+            { port: 25, service: "SMTP", status: "Closed", risk: "Low", tip: "Zaštitite od preusmjeravanja pošte (open relay)." },
+            { port: 80, service: "HTTP", status: "Open", risk: "High", tip: "Implementirajte HSTS zaglavlje." },
+            { port: 110, service: "POP3", status: "Closed", risk: "Low", tip: "Koristite sigurni POP3S (port 995)." },
+            { port: 443, service: "HTTPS", status: "Open", risk: "Low", tip: "Redovito obnavljajte SSL/TLS certifikat." },
+            { port: 3306, service: "MySQL", status: "Filtered", risk: "High", tip: "Baza podataka ne smije biti izravno izložena javnom internetu." },
+            { port: 3389, service: "RDP", status: "Open", risk: "CRITICAL", tip: "Zaštitite RDP pristup putem VPN-a i dvostruke autentifikacije (MFA)." },
+            { port: 8080, service: "HTTP-ALT", status: "Closed", risk: "Low", tip: "Isključite razvojne web servise u produkciji." }
+          ];
+
+    let step = 0;
+    const interval = setInterval(() => {
+        step += 25;
+        progressBar.style.width = step + "%";
+        statusText.textContent = `Skeniranje portova u tijeku (${step}%)...`;
+
+        if (step >= 100) {
+            clearInterval(interval);
+            statusText.textContent = "Skeniranje uspješno završeno!";
+            renderScanResults(ip, portsToScan);
+        }
+    }, 250);
+}
+
+function renderScanResults(ip, ports) {
+    const resultsDiv = document.getElementById("scanResults");
+    let openCount = ports.filter(p => p.status === "Open").length;
+
+    let html = `
+        <div style="margin-top: 15px; padding: 15px; background: #161b22; border-radius: 6px; border: 1px solid #30363d; overflow-x: auto;">
+            <h4>Izvješće mrežnog skeniranja za IP: <span style="color: #58a6ff;">${ip}</span></h4>
+            <p style="margin: 5px 0 15px 0;">Pronađeno je <strong>${openCount}</strong> otvorenih portova od ukupno ${ports.length} skeniranih.</p>
+
+            <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 500px;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #30363d; color: #8b949e;">
+                        <th style="padding: 8px;">Port</th>
+                        <th style="padding: 8px;">Servis</th>
+                        <th style="padding: 8px;">Status</th>
+                        <th style="padding: 8px;">Rizik</th>
+                        <th style="padding: 8px;">Sigurnosna Preporuka</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    ports.forEach(p => {
+        let statusColor = p.status === "Open" ? "#f85149" : (p.status === "Filtered" ? "#d29922" : "#2ea043");
+        let riskBadge = p.risk === "CRITICAL" ? "🔴 Kritično" : (p.risk === "High" ? "🟠 Visok" : (p.risk === "Medium" ? "🟡 Srednji" : "🟢 Nizak"));
+
+        html += `
+            <tr style="border-bottom: 1px solid #21262d;">
+                <td style="padding: 8px; font-weight: bold;">${p.port}</td>
+                <td style="padding: 8px;">${p.service}</td>
+                <td style="padding: 8px; color: ${statusColor}; font-weight: bold;">${p.status}</td>
+                <td style="padding: 8px;">${riskBadge}</td>
+                <td style="padding: 8px; font-size: 0.9em; color: #8b949e;">${p.tip}</td>
+            </tr>
+        `;
+    });
+
+    html += `
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    resultsDiv.innerHTML = html;
+}
+
+// ==========================================
+// --- UNIVERZALNA COPY CODE LOGIKA ---
+// ==========================================
+function copyCode(elementId, btn) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    const textToCopy = el.innerText || el.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = "✅ Copied!";
+        btn.style.backgroundColor = "#238636";
+        btn.style.color = "#ffffff";
+        
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+        }, 2000);
+    }).catch(err => {
+        console.error("Greška pri kopiranju: ", err);
+    });
+}

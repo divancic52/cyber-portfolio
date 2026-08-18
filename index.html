@@ -120,6 +120,36 @@
             <pre><code id="postOutput" style="background-color: #161b22; color: #00ff66; padding: 8px; display: block; border-radius: 4px; border: 1px solid #30363d; white-space: pre-wrap;"></code></pre>
         </div>
     </section>
+    <!-- Lab 4: Password Strength & Entropy Analyzer -->
+    <section class="card" style="margin-top: 20px;">
+        <h2>Cyber Security Lab 4: Password Strength & Entropy Analyzer</h2>
+        <p>Unesite lozinku kako biste izračunali njenu matematičku entropiju (jačina u bitovima) i procijenili vrijeme potrebno za brute-force napad:</p>
+
+        <div style="margin-bottom: 15px;">
+            <label for="passInput" style="display: block; margin-bottom: 5px;">Testna lozinka:</label>
+            <input type="password" id="passInput" oninput="analizirajLozinku()" placeholder="Unesite lozinku za analizu..." style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: monospace;">
+            <label style="display: inline-block; margin-top: 5px; font-size: 0.9em; cursor: pointer; color: #8b949e;">
+                <input type="checkbox" onclick="prikaziLozinku()" style="margin-right: 5px;"> Prikaži tekst lozinke
+            </label>
+        </div>
+
+        <div id="passAnalysis" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
+            <!-- Indikator traka -->
+            <div style="width: 100%; background-color: #21262d; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
+                <div id="strengthMeter" style="width: 0%; height: 100%; transition: width 0.3s, background-color 0.3s;"></div>
+            </div>
+
+            <p style="margin: 5px 0;"><strong>Entropija:</strong> <span id="entropyBits" style="color: #58a6ff; font-weight: bold;">0</span> bitova</p>
+            <p style="margin: 5px 0;"><strong>Ocjena jačine:</strong> <span id="strengthLabel" style="font-weight: bold;">-</span></p>
+            <p style="margin: 5px 0;"><strong>Veličina skupa znakova (Pool Size):</strong> <span id="poolSize">0</span></p>
+            <p style="margin: 5px 0;"><strong>Procjena brute-force vremena (10 milijardi pokušaja/s):</strong> <span id="crackTime" style="color: #00ff66; font-weight: bold;">-</span></p>
+
+            <div style="margin-top: 10px;">
+                <strong>Preporuke za poboljšanje:</strong>
+                <ul id="passSuggestions" style="margin-top: 5px; padding-left: 20px; color: #8b949e;"></ul>
+            </div>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2026 Cyber Security Student. Sva prava pridržana.</p>
     </footer>

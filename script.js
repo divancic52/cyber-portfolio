@@ -225,3 +225,11 @@ function otvoriTab(tabId, event) {
         event.currentTarget.classList.add('active');
     }
 }
+// --- AUTOMATSKO POKRETANJE PRVOG TABA PRI UČITAVANJU STRANICE ---
+document.addEventListener("DOMContentLoaded", function() {
+    // Ako niti jedan tab nije eksplicitno prikazan, aktiviraj 'about' tab
+    const activeTab = document.querySelector('.tab-content.active');
+    if (!activeTab) {
+        otvoriTab('about');
+    }
+});

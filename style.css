@@ -94,3 +94,34 @@ header p {
     `);
     printWindow.document.close();
 }
+/* --- SVJETLA TEMA (LIGHT MODE) OVERRIDES --- */
+body.light-mode {
+    background-color: #f6f8fa;
+    color: #24292f;
+}
+
+body.light-mode .card,
+body.light-mode .tab-btn {
+    background-color: #ffffff;
+    color: #24292f;
+    border-color: #d0d7de;
+}
+
+body.light-mode .tab-btn.active {
+    background-color: #0969da;
+    color: #ffffff;
+}
+
+body.light-mode input,
+body.light-mode select,
+body.light-mode textarea {
+    background-color: #ffffff !important;
+    color: #24292f !important;
+    border-color: #d0d7de !important;
+}
+
+body.light-mode #themeToggleBtn {
+    background-color: #ffffff;
+    color: #24292f;
+    border-color: #d0d7de;
+}

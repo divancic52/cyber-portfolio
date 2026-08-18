@@ -378,3 +378,29 @@ function preuzmiPrintPDF() {
     `);
     printWindow.document.close();
 }
+// --- DARK / LIGHT MODE LOGIKA ---
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById("themeToggleBtn");
+
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("light-mode")) {
+        btn.textContent = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+    } else {
+        btn.textContent = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+// Učitavanje spremljene teme pri pokretanju stranice
+window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    const btn = document.getElementById("themeToggleBtn");
+
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+        if (btn) btn.textContent = "🌙 Dark Mode";
+    }
+});

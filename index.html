@@ -21,6 +21,7 @@
         <button class="tab-btn" onclick="otvoriTab('lab3', event)">Lab 3: Incident POST</button>
         <button class="tab-btn" onclick="otvoriTab('lab4', event)">Lab 4: Password Entropy</button>
         <button class="tab-btn" onclick="otvoriTab('lab5', event)">Lab 5: Hash Generator</button>
+        <button class="tab-btn" onclick="otvoriTab('lab6', event)">Lab 6: Report Generator</button>
         <button class="tab-btn tab-all" onclick="otvoriTab('all', event)">Prikaži sve</button>
     </nav>
 
@@ -207,6 +208,49 @@
                     <label for="hashInput" style="display: block; margin-bottom: 5px;">Ulazni tekst za hashiranje:</label>
                     <textarea id="hashInput" oninput="generirajHash()" rows="3" placeholder="Unesite poruku, lozinku ili podatak..." style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: monospace;"></textarea>
                 </div>
+                <!-- Tab: Lab 6 -->
+        <div id="tab-lab6" class="tab-content">
+            <section class="card">
+                <h2>Cyber Security Lab 6: Security Incident Report Generator</h2>
+                <p>Generirajte i preuzmite službeno sigurnosno izvješće na temelju analize i provedenih ispitivanja:</p>
+
+                <form onsubmit="generirajIzvjesce(event)" style="display: flex; flex-direction: column; gap: 15px;">
+                    <div>
+                        <label for="repAnalyst" style="display: block; margin-bottom: 5px;">Ime i prezime analitičara:</label>
+                        <input type="text" id="repAnalyst" required placeholder="npr. Ivan Horvat" style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                    </div>
+
+                    <div>
+                        <label for="repTarget" style="display: block; margin-bottom: 5px;">Ciljani sustav / Web lokacija:</label>
+                        <input type="text" id="repTarget" required placeholder="npr. example.com ili Interni API" style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                    </div>
+
+                    <div>
+                        <label for="repSeverity" style="display: block; margin-bottom: 5px;">Razina kritičnosti (Severity):</label>
+                        <select id="repSeverity" style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box;">
+                            <option value="LOW (Niska)">LOW (Niska)</option>
+                            <option value="MEDIUM (Srednja)">MEDIUM (Srednja)</option>
+                            <option value="HIGH (Visoka)">HIGH (Visoka)</option>
+                            <option value="CRITICAL (Kritična)">CRITICAL (Kritična)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="repSummary" style="display: block; margin-bottom: 5px;">Sažetak sigurnosnih nalaza / incidenta:</label>
+                        <textarea id="repSummary" rows="4" required placeholder="Opis detektiranih ranjivosti, propusta u zaglavljima, slabih lozinki ili neovlaštenih pristupa..." style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: sans-serif;"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button type="submit" style="background-color: #238636; color: #ffffff; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                            📄 Preuzmi TXT Izvješće
+                        </button>
+                        <button type="button" onclick="preuzmiPrintPDF()" style="background-color: #1f6beb; color: #ffffff; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                            🖨️ Otvori / Preuzmi PDF
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
 
                 <div id="hashResult" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
                     <p style="margin-top: 0;"><strong>SHA-256 Hash (Hexadecimal):</strong></p>

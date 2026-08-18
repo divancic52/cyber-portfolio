@@ -1,0 +1,35 @@
+/* Osnovno podešavanje pozadine i fonta */
+body {
+    background-color: #0d1117; /* Tamna siva/crna pozadina */
+    color: #00ff66;           /* Cyber zeleni tekst */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font za terminal izgled */
+    margin: 0;
+    padding: 40px;
+    line-height: 1.6;
+}
+
+/* Stil za glavne naslove */
+h1 {
+    color: #ffffff;
+    border-bottom: 2px solid #00ff66;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #58a6ff; /* Svijetloplava za podnaslove */
+    margin-top: 30px;
+}
+
+/* Stil za kontejner / karticu */
+.card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Stil za listu */
+ul {
+    list-style-type: '⚡ '; /* Prilagođena ikonica uz stavke */
+}

@@ -20,6 +20,7 @@
         <button class="tab-btn" onclick="otvoriTab('lab2', event)">Lab 2: Headers</button>
         <button class="tab-btn" onclick="otvoriTab('lab3', event)">Lab 3: Incident POST</button>
         <button class="tab-btn" onclick="otvoriTab('lab4', event)">Lab 4: Password Entropy</button>
+        <button class="tab-btn" onclick="otvoriTab('lab5', event)">Lab 5: Hash Generator</button>
         <button class="tab-btn tab-all" onclick="otvoriTab('all', event)">Prikaži sve</button>
     </nav>
 
@@ -138,6 +139,29 @@
                         <input type="checkbox" onclick="prikaziLozinku()" style="margin-right: 5px;"> Prikaži tekst lozinke
                     </label>
                 </div>
+                <!-- Tab: Lab 5 -->
+        <div id="tab-lab5" class="tab-content">
+            <section class="card">
+                <h2>Cyber Security Lab 5: SHA-256 Hash Generator & Verifier</h2>
+                <p>Izračunajte kriptografsku SHA-256 hash vrijednost unesenog teksta u realnom vremenu koristeći nativni <code>Web Crypto API</code>:</p>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="hashInput" style="display: block; margin-bottom: 5px;">Ulazni tekst za hashiranje:</label>
+                    <textarea id="hashInput" oninput="generirajHash()" rows="3" placeholder="Unesite poruku, lozinku ili podatak..." style="width: 100%; padding: 10px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: monospace;"></textarea>
+                </div>
+
+                <div id="hashResult" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
+                    <p style="margin-top: 0;"><strong>SHA-256 Hash (Hexadecimal):</strong></p>
+                    <pre style="background-color: #0d1117; padding: 10px; border-radius: 4px; overflow-x: auto; border: 1px solid #30363d; color: #58a6ff; font-weight: bold; word-break: break-all;" id="hashOutput"></pre>
+
+                    <div style="margin-top: 15px; border-top: 1px solid #30363d; padding-top: 15px;">
+                        <label for="expectedHash" style="display: block; margin-bottom: 5px;">Usporedi / Verificiraj hash (Provjera integriteta):</label>
+                        <input type="text" id="expectedHash" oninput="provjeriHashMatch()" placeholder="Unesite očekivani SHA-256 hash..." style="width: 100%; padding: 8px; background-color: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; box-sizing: border-box; font-family: monospace;">
+                        <p id="matchStatus" style="margin-top: 8px; font-weight: bold; display: none;"></p>
+                    </div>
+                </div>
+            </section>
+        </div>
 
                 <div id="passAnalysis" style="display: none; background-color: #161b22; padding: 15px; border-radius: 4px; border: 1px solid #30363d;">
                     <div style="width: 100%; background-color: #21262d; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">

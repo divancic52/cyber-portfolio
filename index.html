@@ -4,23 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Security Portfolio</title>
-
-    <!-- Ovdje spajamo tvoj HTML sa style.css datotekom -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Cyber Security Portfolio</h1>
-    <p>Dobrodošli! Ovdje učim osnove IT-a i kibernetičke sigurnosti s razumijevanjem.</p>
-    
-    <div class="card">
-        <h2>Moji projekti i vještine</h2>
+    <!-- Zaglavlje stranice -->
+    <header>
+        <h1>Cyber Security Portfolio</h1>
+        <p class="subtitle">Dobrodošli u moj profil | Učenje IT-a & Sigurnosti s razumijevanjem</p>
+    </header>
+
+    <!-- Sekcija O Meni -->
+    <section class="card">
+        <h2>O Meni</h2>
+        <p>Aktivno razvijam vještine u području IT-a i kibernetičke sigurnosti. Fokusiran/a sam na razumijevanje načina na koji web aplikacije i mreže funkcioniraju kako bih uočio/la potencijalne ranjivosti i primijenio/la obrambene mjere.</p>
+    </section>
+
+    <!-- Sekcija s projektima i labovima -->
+    <section class="card">
+        <h2>Moji Projekti & Sigurnosni Labovi</h2>
+        <div class="project-item">
+            <h3>1. Osoban Siguran Portfolio (GitHub Pages)</h3>
+            <p>Izrada i objava statičke web stranice uz primjenu HTTPS-a, čiste HTML/CSS strukture i praćenje verzija koda pomoću Git-a.</p>
+        </div>
+        <div class="project-item">
+            <h3>2. Uskoro: Analiza mrežnog prometa & XSS Lab</h3>
+            <p>Uskoro dodajem praktične primjere rada u Wiresharku i simulaciju osnova web sigurnosti.</p>
+        </div>
+    </section>
+
+    <!-- Sekcija Kontakt -->
+    <section class="card">
+        <h2>Kontakt & Poveznice</h2>
+        <p>Možete me pronaći i pratiti moj napredak na sljedećim platformama:</p>
         <ul>
-            <li>Osnove HTML-a i strukture weba</li>
-            <li>Razumijevanje sigurnosti preglednika</li>
-            <li>CSS stilizacija i osnove sučelja</li>
+            <li><strong>GitHub:</strong> Moj profil na GitHubu</li>
+            <li><strong>LinkedIn:</strong> Uskoro</li>
         </ul>
-    </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Cyber Security Student. Sva prava pridržana.</p>
+    </footer>
 
 </body>
 </html>

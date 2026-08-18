@@ -242,3 +242,53 @@ function formatirajVrijeme(sekunde) {
     if (godine < 1000000000) return `${(godine / 1000000).toFixed(1)} milijuna godina`;
     return "Više od milijardu godina";
 }
+// --- LAB 5: SHA-256 HASH GENERATOR & VERIFIER ---
+async function generirajHash() {
+    const tekst = document.getElementById("hashInput").value;
+    const box = document.getElementById("hashResult");
+    const output = document.getElementById("hashOutput");
+
+    if (!tekst) {
+        box.style.display = "none";
+        document.getElementById("matchStatus").style.display = "none";
+        document.getElementById("expectedHash").value = "";
+        return;
+    }
+
+    box.style.display = "block";
+
+    // Pretvaranje teksta u Bajtove i izračun SHA-256 preko Web Crypto API-ja
+    const encoder = new TextEncoder();
+    const data = encoder.encode(tekst);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+    // Pretvaranje ArrayBuffer u Hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+
+    output.textContent = hashHex;
+
+    // Ponovno provjeri podudaranje ako je unesena očekivana vrijednost
+    provjeriHashMatch();
+}
+
+function provjeriHashMatch() {
+    const trenutniHash = document.getElementById("hashOutput").textContent.toLowerCase().trim();
+    const ocekivaniHash = document.getElementById("expectedHash").value.toLowerCase().trim();
+    const matchStatus = document.getElementById("matchStatus");
+
+    if (!ocekivaniHash) {
+        matchStatus.style.display = "none";
+        return;
+    }
+
+    matchStatus.style.display = "block";
+
+    if (trenutniHash === ocekivaniHash) {
+        matchStatus.textContent = "✔ MATCH: Hash vrijednosti se POTPUNO PODUDARAJU! Podatak je autentičan.";
+        matchStatus.style.color = "#00ff66";
+    } else {
+        matchStatus.textContent = "✖ MISMATCH: Hash vrijednosti se NE PODUDARAJU! Podatak je izmijenjen ili pogrešan.";
+        matchStatus.style.color = "#ff5555";
+    }
+}
